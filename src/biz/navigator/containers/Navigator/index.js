@@ -4,18 +4,17 @@ import {Link, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import {autoDispatch, retainSearchPath} from 'common/util';
-import SideMenu from 'components/SideMenu';
-import {updateNavigator, changeNavigatorOpenKeys} from '../../redux';
+import SideMenu from '../../components/SideMenu';
+import {updateNavigator, changeNavigatorOpenKeys} from '../../models';
 
 import styles from './index.less';
 import logo from './logo.svg';
 
-
-const mapStateToProps = (state, ownProps) => ({
-  items: state.navigator.items,
-  selectedItemKeys: state.navigator.selectedItemKeys,
-  openItemKeys: state.navigator.openItemKeys,
-  collapsed: state.navigator.collapsed,
+const mapStateToProps = ({navigator}, ownProps) => ({
+  items: navigator.entities,
+  selectedItemKeys: navigator.selectedItemKeys,
+  openItemKeys: navigator.openItemKeys,
+  collapsed: navigator.collapsed,
   location: ownProps.location
 });
 

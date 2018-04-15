@@ -1,17 +1,16 @@
-import React from 'react';
-import {Route} from 'react-router-dom';
+export const retainSearchPath = path => `${path}${window.location.search}`;
 
-export function createFakeRoute(path) {
-  return <Route exact path={path} component={() => <div>{path}</div>}/>;
-}
+export const switchActionReducer = (reducer, actions, initialState) => (
+  (state = initialState, action) => actions.includes(action.type) ? reducer(state, action) : state
+);
 
-export function retainSearchPath(path) {
-  return `${path}${window.location.search}`;
-}
+export const createErrorReducer = reducer => (
+  (state, action) => action.error === true
+    ? {...state, error: action.payload}
+    : reducer(state, action)
+);
 
-export function switchActionReducer(reducer, actions, initialState) {
-  return (state = initialState, action) => actions.includes(action.type) ? reducer(state, action) : state;
-}
+export const spreadReducer = (state, {payload}) => ({...state, ...payload});
 
 
 /**
@@ -20,14 +19,12 @@ export function switchActionReducer(reducer, actions, initialState) {
  * @param {Object} actionMaps prop名与action的键值对象
  * @return {function(*=): *}
  */
-export function autoDispatch(actionMaps) {
-  return dispatch => (
-    Object.keys(actionMaps).reduce(
-      (result, prop) => {
-        result[prop] = (...args) => dispatch(actionMaps[prop](...args));
-        return result;
-      },
-      {}
-    )
-  );
-}
+export const autoDispatch = actionMaps => dispatch => (
+  Object.keys(actionMaps).reduce(
+    (result, prop) => {
+      result[prop] = (...args) => dispatch(actionMaps[prop](...args));
+      return result;
+    },
+    {}
+  )
+);

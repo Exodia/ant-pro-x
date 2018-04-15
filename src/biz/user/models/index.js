@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
-import navigator from './navigator';
+import login from './login';
 
-export * from './navigator';
+export * from './login';
 
 export default combineReducers({
-  navigator
+  login
 });

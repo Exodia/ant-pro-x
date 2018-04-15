@@ -30,8 +30,10 @@ SideMenu.propTypes = {
       url: PropTypes.string,
       target: PropTypes.string
     };
+
     ItemShape.children = PropTypes.arrayOf(PropTypes.shape(ItemShape));
 
+    // eslint-disable-next-line
     PropTypes.arrayOf(PropTypes.shape(ItemShape)).isRequired;
   }
 };

@@ -3,7 +3,7 @@ import {Icon} from 'antd';
 import {connect} from 'react-redux';
 
 import {autoDispatch} from 'common/util';
-import {toggleNavigatorCollapse} from '../../redux';
+import {toggleNavigatorCollapse} from 'biz/navigator/models';
 import styles from './index.less';
 
 @connect(

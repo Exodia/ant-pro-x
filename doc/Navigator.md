@@ -1,5 +1,5 @@
-导航设计思路
-======
+导航
+===
 
 ### 导航项配置：
 
@@ -9,15 +9,13 @@
     - icon：配置导航项icon
     - text：导航项文案
     - url：导航链接
-    
-   
-3. 支持折叠
+    - target：链接目标窗口
 
 ### 导航状态树
 
 ```
 {
-   items: Array<Object>,
+   entities: Array<Object>,
    openItemKeys: Array<string>,
    selectedItemKeys: Array<string>,
    collapsed: bool
