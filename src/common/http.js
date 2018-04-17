@@ -5,9 +5,11 @@
 import axios from 'axios';
 
 const IS_DEV = process.env.NODE_ENV === 'development';
+const USE_MOCK = !!process.env.REACT_APP_MOCK;
+
 
 const http = axios.create({
-  baseURL: window.location.search.includes('__mock__') ? '/mock/api' : '/api',
+  baseURL: USE_MOCK || window.location.search.includes('__mock__') ? '/mock/api' : '/api',
   timeout: 15 * 1000,
 });
 

@@ -9,7 +9,6 @@ ant-pro-x：另一种技术风格的 ant pro 实现
 
 ## 与官方实现的区别
 
-
 1. 开发技术栈上：
     
     - ant-pro-x 使用了redux + redux-thunk。
@@ -24,7 +23,7 @@ ant-pro-x：另一种技术风格的 ant pro 实现
 
 3. 项目目录组织风格上：  
   
-     - ant-pro-x 基于domain-style组织，便于大型项目的维护扩展，以及未来的业务组件化
+     - ant-pro-x 基于domain-style组织，便于大型项目的维护扩展，以及未来的业务组件化，[具体目录约定](https://github.com/Exodia/x-react-scripts#domain-style%E7%9A%84%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84)
    
      - 官方似乎主要基于rails-style组织，很难从目录结构直观区分业务模块
 
@@ -33,3 +32,11 @@ ant-pro-x：另一种技术风格的 ant pro 实现
     - ant-pro-x 封装了[json-server](https://github.com/typicode/json-server/)，
   
     - 官方使用roadhog
+
+# 安装使用
+
+1. 安装：npm install
+
+2. 启动应用：```npm start```，或者启用mock环境：```npm run start:mock```
+
+3. 启用mock server：```npm run mock```; 可在页面url后增加 ?__mock__ 参数启用mock数据，或者使用步骤2的方式在命令行启用moc
