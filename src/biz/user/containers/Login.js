@@ -5,7 +5,6 @@ import {Checkbox, Alert, Icon} from 'antd';
 import Login from 'ant-design-pro/es/Login';
 import {withRouter} from 'react-router-dom';
 import {doLogin} from '../models';
-import {autoDispatch} from 'common/util';
 import styles from './Login.less';
 
 const {Tab, UserName, Password, Mobile, Captcha, Submit} = Login;
@@ -17,7 +16,7 @@ const mapStateToProps = ({user: {login}}) => ({
 });
 
 @withRouter
-@connect(mapStateToProps, autoDispatch({doLogin}))
+@connect(mapStateToProps, {doLogin})
 export default class LoginPage extends Component {
 
   state = {

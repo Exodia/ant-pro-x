@@ -2,13 +2,12 @@ import React, {PureComponent} from 'react';
 import {Icon} from 'antd';
 import {connect} from 'react-redux';
 
-import {autoDispatch} from 'common/util';
 import {toggleNavigatorCollapse} from 'biz/navigator/models';
 import styles from './index.less';
 
 @connect(
   state => ({collapsed: state.navigator.collapsed}),
-  autoDispatch({toggleNavigatorCollapse})
+  {toggleNavigatorCollapse}
 )
 export default class GlobalHeader extends PureComponent {
 

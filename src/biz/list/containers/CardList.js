@@ -6,7 +6,6 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import {selectors} from 'biz/navigator/models';
-import {autoDispatch} from 'common/util';
 
 import {fetchList} from '../models';
 import styles from './CardList.less';
@@ -21,7 +20,7 @@ import styles from './CardList.less';
     loading: loading,
     error: error
   }),
-  autoDispatch({fetchList})
+  {fetchList}
 )
 export default class CardList extends PureComponent {
 

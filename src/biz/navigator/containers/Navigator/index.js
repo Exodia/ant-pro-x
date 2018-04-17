@@ -3,7 +3,7 @@ import {Layout} from 'antd';
 import {Link, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {autoDispatch, retainSearchPath} from 'common/util';
+import {retainSearchPath} from 'common/util';
 import SideMenu from '../../components/SideMenu';
 import {updateNavigator, changeNavigatorOpenKeys} from '../../models';
 
@@ -21,7 +21,7 @@ const mapStateToProps = ({navigator}, ownProps) => ({
 @withRouter
 @connect(
   mapStateToProps,
-  autoDispatch({updateNavigator, changeNavigatorOpenKeys})
+  {updateNavigator, changeNavigatorOpenKeys}
 )
 export default class Navigator extends PureComponent {
 
