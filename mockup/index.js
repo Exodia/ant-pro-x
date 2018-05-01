@@ -1,15 +1,18 @@
 const users = require('./data/users')();
 const items = require('./data/items')();
+const rules = require('./data/rules')();
 
 exports.data = async () => ({
-  users: users,
-  items: items,
+  users,
+  items,
+  rules,
   userList: {
     success: true,
     data: users
   },
   account: {},
-  session: {}
+  session: {},
+  'deletedRules': []
 });
 
 exports.routes = {

@@ -1,31 +1,31 @@
-import React, {PureComponent, Fragment} from 'react';
+import React, {PureComponent} from 'react';
 import {Card, Button, Icon, List} from 'antd';
 import Ellipsis from 'ant-design-pro/es/Ellipsis';
-import PageHeader from 'ant-design-pro/es/PageHeader';
+import {PageHeaderLayout} from 'components/Layout';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import {selectors} from 'biz/navigator/models';
 
-import {fetchList} from '../models';
+import {fetchItems} from '../models';
 import styles from './CardList.less';
 
 @connect(
   ({
-     navigator: {entities, selectedItemKeys},
-     list: {entities: list, loading, error}
+     navigator: {entities: navItems, selectedItemKeys},
+     list: {item: {entities, loading, error}}
    }) => ({
-    breadcrumbList: selectors.getBreadcrumbList(entities, selectedItemKeys[0]),
-    list: list,
-    loading: loading,
-    error: error
+    breadcrumbList: selectors.getBreadcrumbList(navItems, selectedItemKeys[0]),
+    entities,
+    loading,
+    error
   }),
-  {fetchList}
+  {fetchItems}
 )
 export default class CardList extends PureComponent {
 
   componentDidMount() {
-    this.props.fetchList({_limit: 8});
+    this.props.fetchItems({pageSize: 8});
   }
 
   render() {
@@ -56,26 +56,25 @@ export default class CardList extends PureComponent {
     );
 
     return (
-      <Fragment>
-        <PageHeader
-          title="卡片列表"
-          breadcrumbList={this.props.breadcrumbList}
-          content={content}
-          extraContent={extraContent}
-          linkElement={Link}
-        />
+      <PageHeaderLayout
+        title="卡片列表"
+        breadcrumbList={this.props.breadcrumbList}
+        content={content}
+        extraContent={extraContent}
+        linkElement={Link}
+      >
         <div className={styles.cardList}>
           <List
             rowKey="id"
             loading={this.props.loading}
             grid={{gutter: 24, lg: 3, md: 2, sm: 1, xs: 1}}
-            dataSource={['', ...this.props.list]}
+            dataSource={[null, ...this.props.entities]}
             renderItem={item => (item ? (
                 <List.Item key={item.id}>
                   <Card hoverable className={styles.card} actions={[<a>操作一</a>, <a>操作二</a>]}>
                     <Card.Meta
                       avatar={<img alt="" className={styles.cardAvatar} src={item.avatar}/>}
-                      title={<a href="#">{item.title}</a>}
+                      title={<a href="#/">{item.title}</a>}
                       description={(
                         <Ellipsis className={styles.item} lines={3}>{item.description}</Ellipsis>
                       )}
@@ -92,7 +91,7 @@ export default class CardList extends PureComponent {
             )}
           />
         </div>
-      </Fragment>
+      </PageHeaderLayout>
     );
   }
 }
